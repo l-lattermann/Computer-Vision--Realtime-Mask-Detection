@@ -99,7 +99,7 @@ def show_off(video_path):
     name = video_path.stem 
     frames = frames[::4]   # Half framerate
     fps = fps / 4
-    imageio.mimsave(f"tests/video_test_output/{name}.gif", frames, fps=fps)
+    imageio.mimsave(f"tests/video_test_output/{name}.gif", frames, fps=fps, loop=0)
 
     cv2.destroyAllWindows() # Close all OpenCV windows
 
