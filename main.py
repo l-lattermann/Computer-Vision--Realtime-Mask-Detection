@@ -87,8 +87,7 @@ def main():
 
         # Optional: Test distance function
         if stats_dict["Dist. test"]:
-            print("Results: ", len(result[0].boxes.cls))
-            cv2f.test_distance_line(frame, result, stats_dict, avg_mask_size)
+            cv2f.test_distance_line(frame, result, stats_dict,distance_threshold=150, avg_mask_size=avg_mask_size)
         
          # Blur the faces
         if stats_dict["Blur"]:

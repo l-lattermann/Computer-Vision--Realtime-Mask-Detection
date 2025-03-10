@@ -11,6 +11,9 @@ def calibrate_cam(avg_mask_size, fetcher, model, stats_dict: dict):
     # Initialize focal length
     f = 0
 
+    # Initialize toggle variables
+    toggle_blur = bool # Toggle blur face
+
     while True:
         # Fetch the latest frame
         ret, frame = fetcher.get_frame()
@@ -19,6 +22,23 @@ def calibrate_cam(avg_mask_size, fetcher, model, stats_dict: dict):
 
         # Mirrow the frame vertically
         frame = cv2.flip(frame, 1)
+
+        # Detect faces
+        result = model(frame, conf=0.7, iou=0.8, stream=True, verbose=False)  # Perform inference
+        result = list(result)   # Convert generator to list
+
+        # Blur faces
+        if toggle_blur:
+            for i in range(len(result[0].boxes.cls)):
+                x1, y1, x2, y2 = map(int, result[0].boxes.xyxy[i])
+                # Put rectangle around the face
+                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 0), 2)  # Black rectangle
+                # Get the face region
+                face = frame[y1:y2, x1:x2]
+                # Blur the face
+                face = cv2.GaussianBlur(face, (25, 25), 30)
+                # Put the blurred face back in the frame
+                frame[y1:y2, x1:x2] = face
 
         # Put center point on the frame
         h_frame, w_frame, _ = frame.shape  # Get frame dimensions
@@ -31,15 +51,19 @@ def calibrate_cam(avg_mask_size, fetcher, model, stats_dict: dict):
         # Add navigation text to the frame
         calibration_text = f'Stand 100 cm away from the camera and put your nose on the red dot.'
         cv2.putText(frame, calibration_text, (10, h_frame - 80), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 2)
-        cv2.putText(frame, "Press 'k' to calibrate the camera", (10, h_frame - 40), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 2)
+        cv2.putText(frame, "Press 'k' to calibrate the camera  (Toggle face blurr with 'b'/'v')", (10, h_frame - 40), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 2)
 
         # Wait for key press
         key = cv2.waitKey(1) & 0xFF  # Capture key press once
-        if key == ord('k'):  # Calibrate the camera
-            # Detect mask
-            result = model(frame, conf=0.7, iou=0.8, stream=True, verbose=False)  # Perform inference
-            result = list(result)   # Convert generator to list
+        
+        # Menue keys
+        if key == ord('b'):  # toggle on blur face
+            toggle_blur = True
+           
+        if key == ord('v'):  # toggle off blur face
+            toggle_blur = False
 
+        if key == ord('k'):  # Calibrate the camera
             # Select detection closest to the center
             box_center_list =[]
             for i in range(len(result[0].boxes.cls)):

@@ -16,7 +16,7 @@ def blur_face(frame, result, last_face_cords=None):
         # Get the face region
         face = frame[y1:y2, x1:x2]
         # Blur the face
-        face = cv2.GaussianBlur(face, (21, 21), 30)
+        face = cv2.GaussianBlur(face, (25, 25), 30)
         # Put the blurred face back in the frame
         frame[y1:y2, x1:x2] = face
         # Return the current frame coordinates
@@ -52,7 +52,7 @@ def put_stats_bar(frame, stats_dict: dict, bar_height=60,font_scale=0.5, font_th
     cv2.putText(frame, stats_text, (10, h - 40), cv2.FONT_HERSHEY_SIMPLEX, font_scale, text_color, font_thickness)
 
     # Add navigation text to the frame
-    navigation_text = f'Controls: IOU: "i" = +, "u" = -], Confidence: ["c" = +, "d" = -], Pred. Framerate: ["p" = +, "o" = -], Model: ["1" = M1, "2" = M2], Dist. test: ["t" = on, "z" = off]'
+    navigation_text = f'Controls: IOU: "i" = +, "u" = -], Confidence: ["c" = +, "d" = -], Pred. Framerate: ["p" = +, "o" = -], Model: ["1" = M1, "2" = M2], Dist. test: ["t" = on, "z" = off], Toggle Blurr: ["b" = on, "v" = off]'
     cv2.putText(frame, navigation_text, (10, h - 10), cv2.FONT_HERSHEY_SIMPLEX, font_scale, text_color, font_thickness)
 
 def put_bounding_boxes(frame, result, model, colorcode=(0,255,0), color_static=True):
@@ -199,6 +199,9 @@ def test_distance_line(frame, result, stats_dict: dict, distance_threshold=150, 
         if distance_xyz < distance_threshold:
             colorcode = (0, 0, 255)
 
+        # print distance threshold and xyz distance
+        print(f"Distance threshold: {distance_threshold}cm, XYZ distance: {distance_xyz}cm")
+
         # Draw line to the center
         cv2.line(frame, (x, y), (int(w_frame/2), int(h_frame/2)), colorcode, 2)  # Red line
 
@@ -209,7 +212,7 @@ def test_distance_line(frame, result, stats_dict: dict, distance_threshold=150, 
         try:
             cv2.putText(frame, f"Z: {z}cm", line_middle, cv2.FONT_HERSHEY_SIMPLEX, 1, colorcode, 2)
             line_middle = (int((x+w_frame/2)/2+150), int((y+h_frame/2)/2)+100)    # Get the middle point
-            cv2.putText(frame, f"XYZ: {distance_xyz}cm", line_middle, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+            cv2.putText(frame, f"XYZ: {distance_xyz}cm", line_middle, cv2.FONT_HERSHEY_SIMPLEX, 1, colorcode, 2)
         except Exception as e:
             print(f"Exception: {e}")
             pass
