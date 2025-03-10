@@ -96,7 +96,7 @@ def show_off(video_path):
     cap.release()
     
     # Save video as GIF
-    name = video_path.stem
+    name = video_path.stem 
     frames = frames[::4]   # Half framerate
     fps = fps / 4
     imageio.mimsave(f"tests/video_test_output/{name}.gif", frames, fps=fps)
