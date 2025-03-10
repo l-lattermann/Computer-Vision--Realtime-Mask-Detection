@@ -7,6 +7,26 @@ This project compares the performance of different YOLO models in detecting:
 
 The goal is to evaluate model efficiency and accuracy under real-world conditions.
 
+## **Project Demonstration**
+
+#### **Mask/no mask small distance**
+<video width="600" controls>
+  <source src="tests/video_test_output/output_istockphoto-1267958948-640_adpp_is.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+#### **Multiple persons small distance**
+<video width="600" controls>
+  <source src="tests/video_test_output/output_istockphoto-1217776095-640_adpp_is.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+#### **Multiple persons great distance**
+<video width="600" controls>
+  <source src="tests/video_test_output/output_istockphoto-1212372184-640_adpp_is.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ---
 
 ## **Installation**
@@ -31,26 +51,92 @@ Follow these steps to set up the project:
 - **`data_sets/`**  
   Contains images and video datasets for testing models.
 
+  - **`image_data/`**  
+    Directory for storing image datasets.
+
+  - **`video_data/`**  
+    Directory for storing video datasets.
+
 - **`models/`**  
   Stores YOLO model weights and configurations.
+
+  - **`yolov8n_mask.pt`**  
+    YOLOv8 nano model trained for mask detection.
+
+  - **`yolov8n_person.pt`**  
+    YOLOv8 nano model trained for person detection.
+
+  - **`yolov11n_mask.pt`**  
+    YOLOv11 nano model trained for mask detection.
+
+  - **`yolov11n_person.pt`**  
+    YOLOv11 nano model trained for person detection.
 
 - **`scripts/`**  
   Includes utility scripts for inference and video processing.
 
-- **`train_runs/`**  
+  - **`cam_calibration.py`**  
+    Script for camera calibration.
+
+  - **`cv2_functions.py`**  
+    Contains OpenCV helper functions.
+
+  - **`frame_fetcher.py`**  
+    Fetches frames from video sources.
+
+- **`tests/`**  
+  Contains test scripts and output data.
+
+  - **`video_test_output/`**  
+    Folder that stores the annotated videos.
+
+  - **`test_mp4.ipynb`**  
+    Jupyter notebook for testing mp4 video inputs.
+
+  - **`test_path_handling.py`**  
+    Script for testing path handling.
+
+  - **`test_webcam.ipynb`**  
+    Jupyter notebook for testing webcam inputs.
+
+  - **`understand_yolo_tensor_structure.ipynb`**  
+    Notebook for exploring YOLO tensor outputs.
+
+- **`training/`**  
   Results and logs from model training and testing.
+
+  - **`yolov11n_mask_100epochs/`**  
+    Training results for YOLOv11 mask model.
+
+  - **`yolov11n_person_100epochs/`**  
+    Training results for YOLOv11 person model.
+
+  - **`yolov8n_mask_100epochs/`**  
+    Training results for YOLOv8 mask model.
+
+  - **`compare_train_args.ipynb`**  
+    Notebook comparing different training arguments.
+
+  - **`train_yolo_colab_nb.ipynb`**  
+    Notebook for training YOLO models on Google Colab.
+
+  - **`training_arg_comparison.xlsx`**  
+    Excel sheet with training argument comparisons.
 
 - **`.gitignore`**  
   Specifies files and directories to be ignored by Git.
 
-- **`detect_yolo.ipynb`**  
-  Notebook for performing detections using the YOLO models.
+- **`config.py`**  
+  Configuration of file paths for the project.
 
-- **`scratches_SSD.ipynb`**  
-  Notebook for initial training experiments.
+- **`main_live_cam.py`**  
+  Script for running YOLO inference on live camera feed.
 
-- **`train_yolo_colab_nb.ipynb`**  
-  Notebook for training YOLO models on Google Colab.
+- **`main_test_video.py`**  
+  Script for running YOLO inference on test videos.
 
-- **`understand_yolo_tensor_structure.ipynb`**  
-  Notebook for exploring YOLO tensor outputs.
+- **`README.md`**  
+  Project documentation.
+
+- **`requirements.txt`**  
+  List of required Python packages for the project.
