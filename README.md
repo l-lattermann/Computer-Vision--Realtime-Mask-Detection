@@ -1,13 +1,28 @@
 # YOLO Model Comparison for Mask and Person Detection
 
-## **Project Purpose**
+# Project Purpose
 This project compares the performance of different YOLO models in detecting:
-1. **Persons** and **face masks**.
-2. **Social distancing** by measuring distances between detected persons.
+
+- **Persons and face masks.**
+- **Social distancing** by measuring distances between detected persons.
 
 The goal is to evaluate model efficiency and accuracy under real-world conditions.
 
+## Modes of Operation
 
+### 1. Live Video (Webcam Mode)
+The system supports real-time detection with adjustable parameters. The following keyboard controls are available:
+
+**Navigation Controls:**
+- **IOU Threshold:** `"i"` = Increase, `"u"` = Decrease  
+- **Confidence Threshold:** `"c"` = Increase, `"d"` = Decrease  
+- **Prediction Framerate:** `"p"` = Increase, `"o"` = Decrease  
+- **Model Selection:** `"1"` = Model M1, `"2"` = Model M2  
+- **Distance Testing:** `"t"` = On, `"z"` = Off  
+- **Toggle Blur Effect:** `"b"` = On, `"v"` = Off  
+
+### 2. Video Analysis Mode
+For offline analysis, videos should be placed in the **`data_sets/video_data/`** directory and referenced in **`main_test_video.py`** for processing.
 ## **Project Demonstration**
 
 ### **Mask/No Mask (Small Distance)**
