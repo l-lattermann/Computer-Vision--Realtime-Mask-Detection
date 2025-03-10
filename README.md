@@ -9,23 +9,14 @@ The goal is to evaluate model efficiency and accuracy under real-world condition
 
 ## **Project Demonstration**
 
-#### **Mask/no mask small distance**
-<video width="600" controls>
-  <source src="tests/video_test_output/output_istockphoto-1267958948-640_adpp_is.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+#### **Mask/No Mask (Small Distance)**
+[![Mask/No Mask Small Distance](https://img.youtube.com/vi/ThVcrCEfbMw/0.jpg)](https://youtu.be/ThVcrCEfbMw)
 
-#### **Multiple persons small distance**
-<video width="600" controls>
-  <source src="tests/video_test_output/output_istockphoto-1217776095-640_adpp_is.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+#### **Multiple Persons (Small Distance)**
+[![Multiple Persons Small Distance](https://img.youtube.com/vi/_Ce_sWYPX9s/0.jpg)](https://youtu.be/_Ce_sWYPX9s)
 
-#### **Multiple persons great distance**
-<video width="600" controls>
-  <source src="tests/video_test_output/output_istockphoto-1212372184-640_adpp_is.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+#### **Multiple Persons (Great Distance)**
+[![Multiple Persons Great Distance](https://img.youtube.com/vi/20JRRBkFnCM/0.jpg)](https://youtu.be/20JRRBkFnCM)
 
 ---
 
