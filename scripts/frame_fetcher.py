@@ -1,8 +1,6 @@
 import threading
 import cv2
 
-def t():
-    print("Hello")
 
 class FrameFetcher:
     """

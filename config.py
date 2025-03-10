@@ -12,6 +12,7 @@ TRAINING_DIR = PROJECT_ROOT / "training"
 
 # Dataset Directories
 IMAGE_DATA_DIR = DATASETS_DIR / "image_data"
+VIDEO_DATA_DIR = DATASETS_DIR / "video_data"
 MASK_PERSON_TEST_DIR = IMAGE_DATA_DIR / "mask_person_test"
 RANDOM_OBJECTS_DIR = IMAGE_DATA_DIR / "random_objects"
 VIDEO_DATA_DIR = DATASETS_DIR / "video_data"

@@ -55,7 +55,7 @@ def put_stats_bar(frame, stats_dict: dict, bar_height=60,font_scale=0.5, font_th
     navigation_text = f'Controls: IOU: "i" = +, "u" = -], Confidence: ["c" = +, "d" = -], Pred. Framerate: ["p" = +, "o" = -], Model: ["1" = M1, "2" = M2], Dist. test: ["t" = on, "z" = off], Toggle Blurr: ["b" = on, "v" = off]'
     cv2.putText(frame, navigation_text, (10, h - 10), cv2.FONT_HERSHEY_SIMPLEX, font_scale, text_color, font_thickness)
 
-def put_bounding_boxes(frame, result, model, colorcode=(0,255,0), color_static=True):
+def put_bounding_boxes(frame, result, model, colorcode=(0,255,0), color_static=True, font_scale: float=0.1, font_thickness: int=1):
     """
         Add bounding boxes to the frame
         :param frame: frame to add the bounding boxes
@@ -63,6 +63,8 @@ def put_bounding_boxes(frame, result, model, colorcode=(0,255,0), color_static=T
         :param model: model used for inference
         :param colorcode: color code for the bounding boxes
         :param color_static: flag to use static color
+        :param font_scale: font scale of the text
+        :param font_thickness: font thickness of the text
 
         returns: None
     """
@@ -79,10 +81,10 @@ def put_bounding_boxes(frame, result, model, colorcode=(0,255,0), color_static=T
                 colorcode = (0, 0, 255)
             elif int(clss) == 2:
                 colorcode = (0,255,0)
-        cv2.rectangle(frame, (x1, y1), (x2, y2), colorcode, 2)  # Red for model 2
-        cv2.putText(frame, text, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, colorcode, 2)
+        cv2.rectangle(frame, (x1, y1), (x2, y2), colorcode, font_thickness)  # Red for model 2
+        cv2.putText(frame, text, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, font_scale, colorcode, font_thickness)
 
-def put_distance_line(frame, result, stats_dict: dict, distance_threshold=150, avg_mask_size=25):
+def put_distance_line(frame, result, stats_dict: dict, distance_threshold=150, avg_mask_size=25, font_scale: float=0.1, font_thickness: int=1, all_values=True):
     """
         Add distance line between bounding boxes
         :param frame: frame to add the distance line
@@ -90,6 +92,8 @@ def put_distance_line(frame, result, stats_dict: dict, distance_threshold=150, a
         :param stats_dict: dictionary containing the stats
         :param distance_threshold: threshold for the distance
         :param avg_mask_box_size: average mask box size
+        :param font_scale: font scale of the text
+        :param font_thickness: font thickness of the text
 
         returns: None
     """
@@ -132,11 +136,14 @@ def put_distance_line(frame, result, stats_dict: dict, distance_threshold=150, a
             colorcode = (0, 0, 255)
              
         # Add line and text to the frame
-        cv2.line(frame, pt1, pt2, colorcode, 2)
-        cv2.putText(frame, f"XY: {distance_xy}cm", pt_middle, cv2.FONT_HERSHEY_SIMPLEX, 1, colorcode, 2)
-        pt_middle = (pt_middle[0], pt_middle[1]+50)    # Get the middle point   
-        cv2.putText(frame, f"XYZ: {distance_xyz}cm", (pt_middle), cv2.FONT_HERSHEY_SIMPLEX, 1, colorcode, 2)
-
+        cv2.line(frame, pt1, pt2, colorcode, font_thickness)
+        if all_values:
+            cv2.putText(frame, f"XY: {distance_xy}cm", pt_middle, cv2.FONT_HERSHEY_SIMPLEX, font_scale, colorcode, font_thickness)
+            pt_middle = (pt_middle[0], pt_middle[1]+50)    # Get the middle point   
+            cv2.putText(frame, f"XYZ: {distance_xyz}cm", (pt_middle), cv2.FONT_HERSHEY_SIMPLEX, font_scale, colorcode, font_thickness)
+        else:
+            cv2.putText(frame, f"{distance_xyz}cm", pt_middle, cv2.FONT_HERSHEY_SIMPLEX, font_scale, colorcode, font_thickness)
+            
 def test_distance_line(frame, result, stats_dict: dict, distance_threshold=150, avg_mask_size=25):
     """
         Add distance line between bounding boxes
