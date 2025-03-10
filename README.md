@@ -7,28 +7,23 @@ This project compares the performance of different YOLO models in detecting:
 
 The goal is to evaluate model efficiency and accuracy under real-world conditions.
 
-## <strong>Project Demonstration</strong>
 
-### <strong>Mask/No Mask (Small Distance)</strong>
+## **Project Demonstration**
+
+### **Mask/No Mask (Small Distance)**
 <img src="tests/video_test_output/istockphoto-1212372184-640_adpp_is.gif" width="400">
 
-<p style="font-size: 10px; font-style: italic;">
-  Source: <a href="https://www.istockphoto.com/de/video/virusepidemie-ist-in-einer-stadt-beendet-frau-und-mann-nehmen-chirurgische-masken-gm1212372184-351930090" target="_blank">iStock</a>
-</p>
+<sub>*Source: [iStock](https://www.istockphoto.com/de/video/virusepidemie-ist-in-einer-stadt-beendet-frau-und-mann-nehmen-chirurgische-masken-gm1212372184-351930090)*</sub>
 
-### <strong>Multiple Persons (Small Distance)</strong>
+### **Multiple Persons (Small Distance)**
 <img src="tests/video_test_output/istockphoto-1217776095-640_adpp_is.gif" width="400">
 
-<p style="font-size: 10px; font-style: italic;">
-  Source: <a href="https://www.istockphoto.com/de/video/überfüllte-menschen-die-eine-gesichtsmaske-tragen-um-coronavirus-oder-covid-19-gm1217776095-355595911" target="_blank">iStock</a>
-</p>
+<sub>*Source: [iStock](https://www.istockphoto.com/de/video/überfüllte-menschen-die-eine-gesichtsmaske-tragen-um-coronavirus-oder-covid-19-gm1217776095-355595911)*</sub>
 
-### <strong>Multiple Persons (Great Distance)</strong>
+### **Multiple Persons (Great Distance)**
 <img src="tests/video_test_output/istockphoto-1267958948-640_adpp_is.gif" width="400">
 
-<p style="font-size: 10px; font-style: italic;">
-  Source: <a href="https://www.istockphoto.com/de/video/studenten-tragen-masken-auf-dem-campus-gm1267958948-372111685" target="_blank">iStock</a>
-</p>
+<sub>*Source: [iStock](https://www.istockphoto.com/de/video/studenten-tragen-masken-auf-dem-campus-gm1267958948-372111685)*</sub>
 
 
 ## **Installation**
