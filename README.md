@@ -7,17 +7,16 @@ This project compares the performance of different YOLO models in detecting:
 
 The goal is to evaluate model efficiency and accuracy under real-world conditions.
 
-## **Project Demonstration**
+## <strong>Project Demonstration</strong>
 
-#### **Mask/No Mask (Small Distance)**
-![Mask/No Mask Small Distance](tests/video_test_output/istockphoto-1212372184-640_adpp_is.gif)
+### <strong>Mask/No Mask (Small Distance)</strong>
+<img src="tests/video_test_output/istockphoto-1212372184-640_adpp_is.gif" width="400">
 
-#### **Multiple Persons (Small Distance)**
-![Multiple Persons Small Distance](tests/video_test_output/istockphoto-1217776095-640_adpp_is.gif)
+### <strong>Multiple Persons (Small Distance)</strong>
+<img src="tests/video_test_output/istockphoto-1217776095-640_adpp_is.gif" width="400">
 
-#### **Multiple Persons (Great Distance)**
-![Multiple Persons Great Distance](tests/video_test_output/istockphoto-1267958948-640_adpp_is.gif)
----
+### <strong>Multiple Persons (Great Distance)</strong>
+<img src="tests/video_test_output/istockphoto-1267958948-640_adpp_is.gif" width="400">
 
 ## **Installation**
 Follow these steps to set up the project:
