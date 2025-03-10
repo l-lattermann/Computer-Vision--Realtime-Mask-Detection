@@ -25,7 +25,7 @@ def main():
     stats_update_interval = 3  # Stats update interval
 
     # Add model variables to the stats dictionary
-    stats_dict = {"Conf.": 0.7, "IOU": 0.5, "Inf. FPS": 1, "f": 100,"Model": "YOLOv8n", "Dist. test": False, "Blur": False}   # Initial values
+    stats_dict = {"Conf.": 0.7, "IOU": 0.5, "Inf. FPS": 1, "f": 100,"Model": "YOLOv8n", "Dist. test": False, "Blur": True}   # Initial values
 
     # Initialize the threaded frame fetcher
     fetcher = ff.FrameFetcher(0)
@@ -42,7 +42,10 @@ def main():
             break   # Break the loop
         frame_count += 1  # Increment frame count
         stats_dict["Frame fetch time"] = (time.time() - frame_fetch_time)*1000    # Add frame fetch time to stats
-
+                
+        # Flip the frame
+        frame = cv2.flip(frame, 1)
+        
         # Reset frame count and start time every 100 frames
         if frame_count == 100:
             frame_count = 1
@@ -60,14 +63,25 @@ def main():
             result = list(result)   # Convert generator to list
             stats_dict["Inference time"] = (time.time() - inf_time)*1000    # End time
 
+        # Blur the faces
+        if stats_dict["Blur"]:
+            # Check if faces are detected
+            if len(result[0].boxes.cls) > 0:
+                # Save last face coordinates
+                last_face_cords = result
+                cv2f.blur_face(frame, result)
+            # If no faces are detected, blur at last face coordinates
+            elif len(result[0].boxes.cls) == 0 and "last_face_cords" in locals():
+                cv2f.blur_face(frame, last_face_cords)
+
         # Add bounding boxes to the frame
         box_time = time.time()    # Start time
-        cv2f.put_bounding_boxes(frame, result, model, color_static=False, font_scale=1)
+        cv2f.put_bounding_boxes(frame, result, model, color_static=False, font_scale=1, font_thickness=2)
         stats_dict["Annotation time"]=(time.time() - box_time)*1000    # End time
 
         # Add distance line to the frame
         line_time = time.time()    # Start time
-        cv2f.put_distance_line(frame=frame, result=result, stats_dict=stats_dict, distance_threshold=150, avg_mask_size=avg_mask_size, font_scale=1)
+        cv2f.put_distance_line(frame=frame, result=result, stats_dict=stats_dict, distance_threshold=150, avg_mask_size=avg_mask_size, font_thickness=2, font_scale=1)
         stats_dict["Line time"]=(time.time() - line_time)*1000    # End time
 
         # Calculate FPS (frames per second)
@@ -87,19 +101,8 @@ def main():
 
         # Optional: Test distance function
         if stats_dict["Dist. test"]:
-            cv2f.test_distance_line(frame, result, stats_dict,distance_threshold=150, avg_mask_size=avg_mask_size)
-        
-         # Blur the faces
-        if stats_dict["Blur"]:
-            # Check if faces are detected
-            if len(result[0].boxes.cls) > 0:
-                # Save last face coordinates
-                last_face_cords = result
-                cv2f.blur_face(frame, result)
-            # If no faces are detected, blur at last face coordinates
-            elif len(result[0].boxes.cls) == 0 and "last_face_cords" in locals():
-                cv2f.blur_face(frame, last_face_cords)
-        
+            cv2f.test_distance_line(frame, result, stats_dict,distance_threshold=150, avg_mask_size=avg_mask_size, )
+
         # Display the frame
         cv2.imshow("Detections", frame) 
 

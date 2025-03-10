@@ -23,7 +23,13 @@ The system supports real-time detection with adjustable parameters. The followin
 
 ### 2. Video Analysis Mode
 For offline analysis, videos should be placed in the **`data_sets/video_data/`** directory and referenced in **`main_test_video.py`** for processing.
-## **Project Demonstration**
+
+## **Project Demonstration on live webcam**
+<img src="https://img.youtube.com/vi/zNIX0ZhWMbA/0.jpg" width="400">
+
+<sub>*Source: [YouTube - created by l.lattermann](https://youtu.be/zNIX0ZhWMbA)*</sub>
+
+## **Project Demonstration on stock video footage**
 
 ### **Mask/No Mask (Small Distance)**
 <img src="tests/video_test_output/istockphoto-1212372184-640_adpp_is.gif" width="400">
