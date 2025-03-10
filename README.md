@@ -10,14 +10,13 @@ The goal is to evaluate model efficiency and accuracy under real-world condition
 ## **Project Demonstration**
 
 #### **Mask/No Mask (Small Distance)**
-[![Mask/No Mask Small Distance](https://img.youtube.com/vi/ThVcrCEfbMw/0.jpg)](https://youtu.be/ThVcrCEfbMw)
+![Mask/No Mask Small Distance](tests/video_test_output/istockphoto-1212372184-640_adpp_is.gif)
 
 #### **Multiple Persons (Small Distance)**
-[![Multiple Persons Small Distance](https://img.youtube.com/vi/_Ce_sWYPX9s/0.jpg)](https://youtu.be/_Ce_sWYPX9s)
+![Multiple Persons Small Distance](tests/video_test_output/istockphoto-1217776095-640_adpp_is.gif)
 
 #### **Multiple Persons (Great Distance)**
-[![Multiple Persons Great Distance](https://img.youtube.com/vi/20JRRBkFnCM/0.jpg)](https://youtu.be/20JRRBkFnCM)
-
+![Multiple Persons Great Distance](tests/video_test_output/istockphoto-1267958948-640_adpp_is.gif)
 ---
 
 ## **Installation**

@@ -1,6 +1,7 @@
 from ultralytics import YOLO
 import cv2 
 import time
+import imageio
 
 from scripts import cam_calibration as cc
 from scripts import cv2_functions as cv2f
@@ -24,15 +25,9 @@ def show_off(video_path):
     # Initialize video capture
     cap = cv2.VideoCapture(video_path)
 
-    # Define output video parameters
-    cap = cv2.VideoCapture(video_path)
-    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    fps = int(cap.get(cv2.CAP_PROP_FPS))
-
-    # Initialize the output video
-    video_name = video_path.stem
-    out = cv2.VideoWriter("tests/video_test_output/output_" + video_name + ".mp4", cv2.VideoWriter_fourcc(*'MP4V'), fps, (width, height))
+    # Save the video
+    frames = []
+    fps = cap.get(cv2.CAP_PROP_FPS)  # Get FPS
 
     # Add model variables to the stats dictionary
     stats_dict = {"Conf.": 0.7, "IOU": 0.5, "Inf. FPS": 1, "f": 100,"Model": "YOLOv8n", "Dist. test": False, "Blur": False}   # Initial values
@@ -88,14 +83,19 @@ def show_off(video_path):
         cv2.resize(frame, (1920, 1080), interpolation=cv2.INTER_AREA)
 
         # Display the frame
-        cv2.imshow("Detections", frame) 
+        cv2.imshow("Detections", frame)
 
-        # Write the frame to the output video
-        out.write(frame)
+        #Convert to RGB and save the frame
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) 
+        frames.append(frame)
+
 
     # Release the video capture and output video
     cap.release()
-    out.release()
+    
+    # Save video as GIF
+    name = video_path.stem
+    imageio.mimsave(f"tests/video_test_output/{name}.gif", frames, fps=fps)
 
     cv2.destroyAllWindows() # Close all OpenCV windows
 
