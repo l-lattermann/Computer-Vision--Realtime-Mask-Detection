@@ -41,8 +41,6 @@ Follow these steps to set up the project:
    pip install -r requirements.txt
    ```
 
-3. (Optional) Ensure YOLO models are available in the `models` directory. You can download pre-trained models from [Ultralytics](https://github.com/ultralytics/yolov5).
-
 ---
 
 ## **Project Structure**

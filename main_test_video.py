@@ -86,7 +86,7 @@ def show_off(video_path):
         cv2.imshow("Detections", frame)
 
         #Convert to RGB and save the frame
-        width, height = map(int, (frame.shape[1] * 0.4, frame.shape[0] * 0.4))  # Resize the frame
+        width, height = map(int, (frame.shape[1] * 0.5, frame.shape[0] * 0.5))  # Resize the frame
         frame = cv2.resize(frame, (width, height), interpolation=cv2.INTER_AREA)  # Resize the frame
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) 
         frames.append(frame)
@@ -97,8 +97,8 @@ def show_off(video_path):
     
     # Save video as GIF
     name = video_path.stem 
-    frames = frames[::4]   # Half framerate
-    fps = fps / 4
+    frames = frames[::5]   # Reduce the number of frames
+    fps = fps / 5   # Reduce the frame rate
     imageio.mimsave(f"tests/video_test_output/{name}.gif", frames, fps=fps, loop=0)
 
     cv2.destroyAllWindows() # Close all OpenCV windows
