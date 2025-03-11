@@ -1,5 +1,5 @@
 # YOLO Model Comparison for Mask and Person Detection
-The full desciption of the project can be found as in this [PDF](project_report/20250310_Laurenz_Lattermann_4239646_DLBAIPCV01.pdf).
+The full desciption of the project can be found in this [PDF](project_report/20250310_Laurenz_Lattermann_4239646_DLBAIPCV01.pdf).
 
 # Project Purpose
 This project compares the performance of different YOLO models in detecting:
