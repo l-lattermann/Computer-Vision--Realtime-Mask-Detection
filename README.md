@@ -26,10 +26,9 @@ The system supports real-time detection with adjustable parameters. The followin
 For offline analysis, videos should be placed in the **`data_sets/video_data/`** directory and referenced in **`main_test_video.py`** for processing.
 
 ## **Project Demonstration on Live Webcam**
-Click on the image to view the video.
 [![Project Demonstration](https://img.youtube.com/vi/zNIX0ZhWMbA/0.jpg)](https://youtu.be/zNIX0ZhWMbA)
 
-<sub>*Source: [YouTube - created by l.lattermann](https://youtu.be/zNIX0ZhWMbA)*</sub>
+<sub>*Source: [YouTube - created by l.lattermann (click to watch)](https://youtu.be/zNIX0ZhWMbA)*</sub>
 
 ## **Project Demonstration on stock video footage**
 
